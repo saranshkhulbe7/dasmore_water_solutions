@@ -13,7 +13,7 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/api": "https://grwb-server-v2-6xdq5.ondigitalocean.app",
+      "/api": " ",
     },
     host: true,
   },

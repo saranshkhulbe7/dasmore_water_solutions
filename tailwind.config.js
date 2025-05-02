@@ -6,6 +6,10 @@ export default {
   content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        mesh: "url('/mesh.png')",
+        gradient: "url('/gradient.png')",
+      },
       containers: {
         "2xs": "16rem",
         xs: "20rem",
@@ -46,6 +50,7 @@ export default {
           400: "var(--gray-scale-400)",
         },
 
+        "main-black": "var(--main-black)",
         "single-color": "var(--single-color)",
         "blue-color": "var(--blue-color)",
         "primary-solid-hover": "var(--primary-solid-hover)",
