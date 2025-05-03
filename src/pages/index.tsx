@@ -9,7 +9,7 @@ import Who from "@/components/waterSolution/Who";
 
 export default function HomePage() {
   return (
-    <main className="w-full mt-10 lg:mt-16">
+    <main className="w-full mt-10 lg:mt-10">
       <HomeHero />
       <Who />
       <Patented />

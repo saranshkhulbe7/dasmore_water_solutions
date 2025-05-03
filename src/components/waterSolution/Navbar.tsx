@@ -7,7 +7,7 @@ export default function Navbar() {
   return (
     <header className="w-full text-white">
       {/* Main navigation */}
-      <nav className="bg-black bg-opacity-5 px-7 py-4 shadow relative flex items-center backdrop-blur-lg mt-4 rounded-lg justify-between">
+      <nav className="bg-black bg-opacity-5 px-7 shadow relative flex items-center backdrop-blur-lg mt-2 rounded-lg justify-between">
         {/* Left links */}
         <div className="w-40 lg:w-60">
           <img
