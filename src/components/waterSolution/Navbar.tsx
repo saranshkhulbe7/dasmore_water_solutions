@@ -4,6 +4,8 @@ import { ArrowDown, ArrowRight, Menu, X } from "lucide-react";
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <header className="w-full text-white">
       {/* Main navigation */}
@@ -53,14 +55,19 @@ export default function Navbar() {
       {/* Mobile menu items */}
       {menuOpen && (
         <div className="md:hidden bg-[#080808] p-7 space-y-4 shadow-lg text-xl font-semibold flex flex-col">
-          <a href="#solutions">Solutions</a>
-          <a href="#articles" className="flex items-center">
+          <a href="#solutions" onClick={closeMenu}>
+            Solutions
+          </a>
+          <a href="#articles" className="flex items-center" onClick={closeMenu}>
             Articles <ArrowDown />
           </a>
-          <a href="#about">About</a>
+          <a href="#about" onClick={closeMenu}>
+            About
+          </a>
           <a
             href="#contact"
             className="flex w-fit bg-[#004AAD] rounded-full items-center px-4 py-2"
+            onClick={closeMenu}
           >
             <p>Get in touch</p>
             <ArrowRight />

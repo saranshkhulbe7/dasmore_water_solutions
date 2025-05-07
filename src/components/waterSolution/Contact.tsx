@@ -3,7 +3,7 @@ export default function ContactForm() {
 
   return (
     <div
-      className="bg-black text-white py-16 2xl:pt-40 2xl:pb-16 px-6"
+      className="bg-black text-white py-24 2xl:pt-52 2xl:pb-16 px-6"
       id="contact"
     >
       <div className="max-w-5xl mx-auto">

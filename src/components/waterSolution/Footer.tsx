@@ -1,17 +1,229 @@
+// import Logo from "/logo.png";
+// import { Facebook, Instagram } from "lucide-react";
+
+// const Footer = () => {
+//   const links = {
+//     company: ["About Us", "Careers", "Press"],
+//     resources: ["Blog", "Case Studies", "Webinars"],
+//     support: ["Contact", "Help Center", "Privacy Policy"],
+//     legal: ["Terms of Service", "Cookies Policy"],
+//   };
+
+//   return (
+//     <footer className="border-t border-gray-700 bg-black">
+//       <div className="max-w-7xl mx-auto px-8 lg:px-10 py-10">
+//         <div className="lg:hidden flex flex-col items-start space-y-6 pb-10">
+//           <figure className="w-52">
+//             <img
+//               src={Logo}
+//               alt="Dasmore Solutions, LLC"
+//               className="w-full h-auto"
+//             />
+//           </figure>
+//           <div className="flex space-x-4 pl-4 ">
+//             <a href="#">
+//               <Facebook size={24} className="text-white/60" />
+//             </a>
+//             <a href="#">
+//               <Instagram size={24} className="text-white/60" />
+//             </a>
+//             <a href="#">
+//               <img src="/x.png" alt="X (Twitter)" className="h-6 w-auto" />
+//             </a>
+//           </div>
+//         </div>
+//         <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-5 gap-y-10 gap-x-8 2xl:gap-x-20 pl-4 lg:pl-0">
+//           {/* Logo + socials */}
+//           <div className="hidden lg:flex flex-col items-start space-y-6">
+//             <figure className="w-44 2xl:w-52">
+//               <img
+//                 src={Logo}
+//                 alt="Dasmore Solutions, LLC"
+//                 className="w-full h-auto"
+//               />
+//             </figure>
+//             <div className="flex space-x-4">
+//               <a href="#">
+//                 <Facebook
+//                   size={24}
+//                   className="text-white/60 hover:text-white"
+//                 />
+//               </a>
+//               <a href="#">
+//                 <Instagram
+//                   size={24}
+//                   className="text-white/60 hover:text-white"
+//                 />
+//               </a>
+//               <a href="#">
+//                 <img
+//                   src="/x.png"
+//                   alt="X (Twitter)"
+//                   className="h-6 w-auto text-white/60 hover:text-white"
+//                 />
+//               </a>
+//             </div>
+//           </div>
+
+//           {/* Company */}
+//           <div>
+//             <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
+//               Company
+//             </h3>
+//             <ul className="mt-4 space-y-2">
+//               {links.company.map((item) => (
+//                 <li key={item}>
+//                   <a
+//                     href="#"
+//                     className="text-sm text-gray-400 hover:text-white"
+//                   >
+//                     {item}
+//                   </a>
+//                 </li>
+//               ))}
+//             </ul>
+//           </div>
+
+//           {/* Resources */}
+//           <div>
+//             <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
+//               Resources
+//             </h3>
+//             <ul className="mt-4 space-y-2">
+//               {links.resources.map((item) => (
+//                 <li key={item}>
+//                   <a
+//                     href="#"
+//                     className="text-sm text-gray-400 hover:text-white"
+//                   >
+//                     {item}
+//                   </a>
+//                 </li>
+//               ))}
+//             </ul>
+//           </div>
+
+//           {/* Support */}
+//           <div>
+//             <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
+//               Support
+//             </h3>
+//             <ul className="mt-4 space-y-2">
+//               {links.support.map((item) => (
+//                 <li key={item}>
+//                   <a
+//                     href="#"
+//                     className="text-sm text-gray-400 hover:text-white"
+//                   >
+//                     {item}
+//                   </a>
+//                 </li>
+//               ))}
+//             </ul>
+//           </div>
+
+//           {/* Legal */}
+//           <div>
+//             <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
+//               Legal
+//             </h3>
+//             <ul className="mt-4 space-y-2">
+//               {links.legal.map((item) => (
+//                 <li key={item}>
+//                   <a
+//                     href="#"
+//                     className="text-sm text-gray-400 hover:text-white"
+//                   >
+//                     {item}
+//                   </a>
+//                 </li>
+//               ))}
+//             </ul>
+//           </div>
+//         </div>
+//       </div>
+//     </footer>
+//   );
+// };
+
+// export default Footer;
+
+import { Link } from "react-router-dom";
 import Logo from "/logo.png";
 import { Facebook, Instagram } from "lucide-react";
 
+interface LinkItem {
+  name: string;
+  href: string;
+  external?: boolean;
+}
+
 const Footer = () => {
-  const links = {
-    company: ["About Us", "Careers", "Press"],
-    resources: ["Blog", "Case Studies", "Webinars"],
-    support: ["Contact", "Help Center", "Privacy Policy"],
-    legal: ["Terms of Service", "Cookies Policy"],
+  // centralized link registry
+  const links: Record<string, LinkItem[]> = {
+    company: [
+      { name: "About Us", href: "#about", external: false },
+      { name: "Careers", href: "/careers", external: false },
+      { name: "Press", href: "/press", external: false },
+    ],
+    // resources: [
+    //   { name: "Blog", href: "/blog", external: false },
+    //   { name: "Case Studies", href: "/case-studies", external: false },
+    //   { name: "Webinars", href: "/webinars", external: false },
+    // ],
+    support: [
+      {
+        name: "Email : info@xpoll.io",
+        href: "",
+        external: false,
+      },
+      {
+        name: "Phone : +1 860 655 0095",
+        href: "",
+        external: false,
+      },
+    ],
+    legal: [
+      { name: "Privacy Policy", href: "/privacy-policy", external: false },
+    ],
   };
+
+  const socials: Record<string, string> = {
+    facebook: "https://facebook.com/YourPage",
+    instagram: "https://instagram.com/YourPage",
+    twitter: "https://x.com/YourPage",
+  };
+
+  const SmartLink = ({
+    href,
+    external = false,
+    children,
+    className,
+  }: {
+    href: string;
+    external?: boolean;
+    children: React.ReactNode;
+    className?: string;
+  }) =>
+    external ? (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+      >
+        {children}
+      </a>
+    ) : (
+      <Link to={href} className={className}>
+        {children}
+      </Link>
+    );
 
   return (
     <footer className="border-t border-gray-700 bg-black">
       <div className="max-w-7xl mx-auto px-8 lg:px-10 py-10">
+        {/* mobile socials and logo */}
         <div className="lg:hidden flex flex-col items-start space-y-6 pb-10">
           <figure className="w-52">
             <img
@@ -20,42 +232,67 @@ const Footer = () => {
               className="w-full h-auto"
             />
           </figure>
-          <div className="flex space-x-4 pl-4 ">
-            <a href="#">
-              <Facebook size={24} className="text-white/60" />
+          <div className="flex space-x-4 pl-4">
+            <a
+              href={socials.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Facebook size={24} className="text-white/60 hover:text-white" />
             </a>
-            <a href="#">
-              <Instagram size={24} className="text-white/60" />
+            <a
+              href={socials.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Instagram size={24} className="text-white/60 hover:text-white" />
             </a>
-            <a href="#">
-              <img src="/x.png" alt="X (Twitter)" className="h-6 w-auto" />
+            <a href={socials.twitter} target="_blank" rel="noopener noreferrer">
+              <img
+                src="/x.png"
+                alt="X (Twitter)"
+                className="h-6 w-auto text-white/60 hover:text-white"
+              />
             </a>
           </div>
         </div>
+
         <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-5 gap-y-10 gap-x-8 2xl:gap-x-20 pl-4 lg:pl-0">
-          {/* Logo + socials */}
+          {/* desktop logo + socials */}
           <div className="hidden lg:flex flex-col items-start space-y-6">
-            <figure className="w-44 2xl:w-52">
+            <a href="/" className="w-44 2xl:w-52">
               <img
                 src={Logo}
                 alt="Dasmore Solutions, LLC"
                 className="w-full h-auto"
               />
-            </figure>
+            </a>
             <div className="flex space-x-4">
-              <a href="#">
+              <a
+                href={socials.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Facebook
                   size={24}
                   className="text-white/60 hover:text-white"
                 />
               </a>
-              <a href="#">
+              <a
+                href={socials.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Instagram
                   size={24}
                   className="text-white/60 hover:text-white"
                 />
               </a>
-              <a href="#">
+              <a
+                href={socials.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
                   src="/x.png"
                   alt="X (Twitter)"
@@ -65,81 +302,27 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Company */}
-          <div>
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
-              Company
-            </h3>
-            <ul className="mt-4 space-y-2">
-              {links.company.map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
-                    className="text-sm text-gray-400 hover:text-white"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Resources */}
-          <div>
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
-              Resources
-            </h3>
-            <ul className="mt-4 space-y-2">
-              {links.resources.map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
-                    className="text-sm text-gray-400 hover:text-white"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Support */}
-          <div>
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
-              Support
-            </h3>
-            <ul className="mt-4 space-y-2">
-              {links.support.map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
-                    className="text-sm text-gray-400 hover:text-white"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Legal */}
-          <div>
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
-              Legal
-            </h3>
-            <ul className="mt-4 space-y-2">
-              {links.legal.map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
-                    className="text-sm text-gray-400 hover:text-white"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* link sections */}
+          {Object.entries(links).map(([section, items]) => (
+            <div key={section}>
+              <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
+                {section.charAt(0).toUpperCase() + section.slice(1)}
+              </h3>
+              <ul className="mt-4 space-y-2">
+                {items.map((item) => (
+                  <li key={item.name}>
+                    <SmartLink
+                      href={item.href}
+                      external={item.external}
+                      className="text-sm text-gray-400 hover:text-white"
+                    >
+                      {item.name}
+                    </SmartLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
     </footer>
