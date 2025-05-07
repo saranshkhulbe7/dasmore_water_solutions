@@ -115,18 +115,16 @@
 //     </section>
 //   );
 // }
-
 import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import {
   Dialog,
-  DialogTrigger,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogDescription,
   DialogClose,
-} from "@/components/ui/dialog"; // adjust import path as needed
+} from "@/components/ui/dialog";
 
 const testimonials = [
   {
@@ -139,22 +137,42 @@ const testimonials = [
       "Through DasMore, Dr. Das is dedicated to delivering sustainable, science-driven solutions that protect communities, advance innovation, and build a cleaner, more resilient future.",
     ],
   },
-  // ... other testimonials
+  {
+    name: "Stanton Terranova",
+    role: "Chief Strategic Officer",
+    avatar: "/p2.png",
+    quote: [
+      "Stanton Terranova is a New York-based attorney, entrepreneur, and blockchain innovator leading XPOLL at the forefront of decentralized finance and digital governance. A top graduate of the University of Rhode Island and holder of a Juris Doctorate in maritime law, Stanton brings deep expertise in law, business, and real estate.",
+      "As the founder of XPOLL and GreatRWB, he has driven the development of platforms that reshape global participation in the Web3 economy. Beyond tech and law, Stanton is also a committed farmer, reflecting his passion for sustainability and innovation across industries.",
+    ],
+  },
+  {
+    name: "Araceli Figueroa",
+    role: "Hydrology Specialist",
+    avatar: "/p3.png",
+    quote: "Innovative solutions for modern water challenges.",
+  },
+  {
+    name: "Nikolai Petrov",
+    role: "Environmental Engineer",
+    avatar: "/p4.png",
+    quote: "A game-changer in water safety technology.",
+  },
 ];
 
 export default function Leader() {
   const scrollEl = useRef<HTMLDivElement>(null);
-  const [activeQuote, setActiveQuote] = useState<string | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const scroll = (delta: number) => {
     if (!scrollEl.current) return;
     scrollEl.current.scrollBy({ left: delta, behavior: "smooth" });
   };
 
-  const openModal = (quoteArr: string[]) => {
-    setActiveQuote(quoteArr.join("\n\n"));
+  const openModal = (index: number) => {
+    setActiveIndex(index);
   };
-  const closeModal = () => setActiveQuote(null);
+  const closeModal = () => setActiveIndex(null);
 
   return (
     <section className="text-white py-12 2xl:pt-28 px-8">
@@ -186,9 +204,7 @@ export default function Leader() {
                 {fullText.length > 150 && (
                   <button
                     className="mt-2 text-blue-400 hover:underline"
-                    onClick={() =>
-                      openModal(Array.isArray(t.quote) ? t.quote : [t.quote])
-                    }
+                    onClick={() => openModal(i)}
                   >
                     Read more
                   </button>
@@ -218,14 +234,21 @@ export default function Leader() {
       </div>
 
       {/* Modal */}
-      <Dialog open={!!activeQuote} onOpenChange={closeModal}>
-        <DialogContent>
+      <Dialog open={activeIndex !== null} onOpenChange={closeModal}>
+        <DialogContent className="bg-black border border-gray-800 text-white">
           <DialogHeader>
-            <DialogTitle>Full Testimonial</DialogTitle>
+            <DialogTitle>
+              {activeIndex !== null && testimonials[activeIndex].name}
+            </DialogTitle>
             <DialogClose className="absolute right-4 top-4" />
           </DialogHeader>
-          <DialogDescription className="whitespace-pre-wrap text-gray-200">
-            {activeQuote}
+          <DialogDescription className="whitespace-pre-wrap">
+            {activeIndex !== null &&
+            Array.isArray(testimonials[activeIndex].quote)
+              ? testimonials[activeIndex].quote.join("\n\n")
+              : activeIndex !== null
+              ? testimonials[activeIndex].quote
+              : ""}
           </DialogDescription>
         </DialogContent>
       </Dialog>
