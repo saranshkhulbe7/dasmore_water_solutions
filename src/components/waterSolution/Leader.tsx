@@ -146,18 +146,6 @@ const testimonials = [
       "As the founder of XPOLL and GreatRWB, he has driven the development of platforms that reshape global participation in the Web3 economy. Beyond tech and law, Stanton is also a committed farmer, reflecting his passion for sustainability and innovation across industries.",
     ],
   },
-  {
-    name: "Araceli Figueroa",
-    role: "Hydrology Specialist",
-    avatar: "/p3.png",
-    quote: "Innovative solutions for modern water challenges.",
-  },
-  {
-    name: "Nikolai Petrov",
-    role: "Environmental Engineer",
-    avatar: "/p4.png",
-    quote: "A game-changer in water safety technology.",
-  },
 ];
 
 export default function Leader() {
