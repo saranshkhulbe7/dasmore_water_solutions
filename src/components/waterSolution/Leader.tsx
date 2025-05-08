@@ -171,7 +171,7 @@ export default function Leader() {
       <div className="relative mx-6 md:mx-10 lg:mx-[calc(100%-85vw)]">
         <div
           ref={scrollEl}
-          className="overflow-x-scroll scroll-pl-4 md:scroll-pl-0 snap-x snap-mandatory flex space-x-4"
+          className="overflow-x-scroll scroll-pl-4 md:scroll-pl-0 snap-x snap-mandatory flex space-x-4 items-center justify-center"
         >
           {testimonials.map((t, i) => {
             const fullText = Array.isArray(t.quote)
