@@ -218,7 +218,7 @@ export default function Leader() {
         <div className="absolute inset-y-0 left-0 w-16 pointer-events-none bg-gradient-to-r from-black to-transparent" />
         <button
           onClick={() => scroll(-300)}
-          className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-600 p-2 rounded-full text-white z-10 pointer-events-auto"
+          className="absolute -left-5 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-600 p-2 rounded-full text-white z-10 pointer-events-auto"
           aria-label="Scroll left"
         >
           <ChevronLeft size={24} />
@@ -226,7 +226,7 @@ export default function Leader() {
         <div className="absolute inset-y-0 right-0 w-16 pointer-events-none bg-gradient-to-l from-black to-transparent" />
         <button
           onClick={() => scroll(300)}
-          className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-600 p-2 rounded-full text-white z-10 pointer-events-auto"
+          className="absolute -right-5 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-600 p-2 rounded-full text-white z-10 pointer-events-auto"
           aria-label="Scroll right"
         >
           <ChevronRight size={24} />
