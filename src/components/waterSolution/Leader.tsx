@@ -56,11 +56,6 @@ export default function Leader() {
     scrollEl.current.scrollBy({ left: delta, behavior: "smooth" });
   };
 
-  const scroll = (delta: number) => {
-    if (!scrollEl.current) return;
-    scrollEl.current.scrollBy({ left: delta, behavior: "smooth" });
-  };
-
   const openModal = (index: number) => {
     setActiveIndex(index);
   };
