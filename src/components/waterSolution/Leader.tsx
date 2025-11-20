@@ -11,6 +11,17 @@ import {
 
 const testimonials = [
   {
+    name: "Edward P. Morrone",
+    role: "Chief Executive Officer",
+    avatar: "/p2.png",
+    quote: [
+      "Edward P. Morrone is a distinguished Rhode Island public servant and community leader with a long record of civic and environmental advocacy. A former State Senator representing the coastal district of Westerly and a past President of the Westerly Town Council, Mr. Morrone has dedicated his career to strengthening local governance, advancing sustainable development, and protecting Rhode Island’s coastal and water resources.",
+      "With over three decades of experience in public administration, infrastructure planning, and community development, Mr. Morrone has been a consistent voice for transparent governance and environmental responsibility. His leadership on shoreline access, municipal water management, and community resilience has shaped policies that balance public rights with long-term environmental stewardship.",
+      "Mr. Morrone brings deep knowledge of state and municipal frameworks, stakeholder engagement, and public–private collaboration. His work bridges government, science, and industry to promote cleaner water systems and healthier communities across New England.",
+      "Through his ongoing civic and environmental efforts, Edward Morrone continues to advance a vision of pragmatic sustainability, one rooted in accountability, innovation, and service to the people of Rhode Island.",
+    ],
+  },
+  {
     name: "Dr. Gautham P. Das",
     role: "Founder & Chief Scientific Officer",
     avatar: "/p1.png",
@@ -34,6 +45,16 @@ const testimonials = [
 export default function Leader() {
   const scrollEl = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const scrollByCard = (direction: "left" | "right") => {
+    if (!cardRef.current || !scrollEl.current) return;
+
+    const cardWidth = cardRef.current.offsetWidth + 16; // card width + gap
+    const delta = direction === "left" ? -cardWidth : cardWidth;
+
+    scrollEl.current.scrollBy({ left: delta, behavior: "smooth" });
+  };
 
   const scroll = (delta: number) => {
     if (!scrollEl.current) return;
@@ -46,24 +67,29 @@ export default function Leader() {
   const closeModal = () => setActiveIndex(null);
 
   return (
-    <section className="text-white py-12 2xl:pt-28 px-8">
+    <section className="text-white py-12 2xl:pt-28 md:px-8">
       <h2 className="text-center text-3xl lg:text-5xl font-bold pb-7">
         Our Team
       </h2>
 
-      <div className="relative mx-6 md:mx-10 lg:mx-[calc(100%-85vw)]">
+      <div className="relative mx-4 md:mx-7 lg:mx-[calc(100%-85vw)]">
         <div
           ref={scrollEl}
-          className="overflow-x-scroll scroll-pl-4 md:scroll-pl-0 snap-x snap-mandatory flex space-x-4 items-center justify-center"
+          className="overflow-x-auto snap-x snap-mandatory flex space-x-4 px-2 scrollbar-none"
         >
           {testimonials.map((t, i) => {
             const fullText = Array.isArray(t.quote)
               ? t.quote.join(" ")
               : t.quote;
+
             return (
               <div
                 key={i}
-                className="snap-start flex-shrink-0 bg-gray-800 rounded-lg p-6 w-[90vw] sm:w-80 md:w-72 lg:w-80 last:mr-4 md:mr-0"
+                ref={i === 0 ? cardRef : null} // measure first card
+                className="
+          snap-center flex-shrink-0 bg-gray-800 rounded-lg p-6 
+          w-[85vw] sm:w-[60vw] md:w-[40vw] lg:w-[28vw]
+        "
               >
                 <div className="flex items-center mb-4">
                   <span>
@@ -71,7 +97,9 @@ export default function Leader() {
                     <p className="text-sm text-gray-400">{t.role}</p>
                   </span>
                 </div>
+
                 <p className="text-gray-200 line-clamp-3">{fullText}</p>
+
                 {fullText.length > 150 && (
                   <button
                     className="mt-2 text-blue-400 hover:underline"
@@ -86,19 +114,17 @@ export default function Leader() {
         </div>
 
         {/* arrows and fades */}
-        <div className="absolute inset-y-0 left-0 w-16 pointer-events-none bg-gradient-to-r from-black to-transparent" />
+        <div className="absolute inset-y-0 -left-0.5 w-16 pointer-events-none bg-gradient-to-r from-black to-transparent" />
         <button
-          onClick={() => scroll(-300)}
-          className="absolute -left-5 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-600 p-2 rounded-full text-white z-10 pointer-events-auto"
-          aria-label="Scroll left"
+          onClick={() => scrollByCard("left")}
+          className="absolute -left-2 md:-left-5 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-600 p-2 rounded-full text-white z-10 pointer-events-auto"
         >
           <ChevronLeft size={24} />
         </button>
-        <div className="absolute inset-y-0 right-0 w-16 pointer-events-none bg-gradient-to-l from-black to-transparent" />
+        <div className="absolute inset-y-0 -right-0.5 w-16 pointer-events-none bg-gradient-to-l from-black to-transparent" />
         <button
-          onClick={() => scroll(300)}
-          className="absolute -right-5 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-600 p-2 rounded-full text-white z-10 pointer-events-auto"
-          aria-label="Scroll right"
+          onClick={() => scrollByCard("right")}
+          className="absolute -right-2 md:-right-5 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-600 p-2 rounded-full text-white z-10 pointer-events-auto"
         >
           <ChevronRight size={24} />
         </button>
@@ -106,7 +132,7 @@ export default function Leader() {
 
       {/* Modal */}
       <Dialog open={activeIndex !== null} onOpenChange={closeModal}>
-        <DialogContent className="bg-black border border-gray-800 text-white">
+        <DialogContent className="bg-black border border-gray-700 text-white overflow-y-scroll max-h-[75vh]">
           <DialogHeader>
             <DialogTitle>
               {activeIndex !== null && testimonials[activeIndex].name}
