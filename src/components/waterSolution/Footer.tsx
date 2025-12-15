@@ -178,9 +178,9 @@ const Footer = () => {
       <a
         href="https://www.canvaslabs.world/"
         target="_blank"
-        className="text-white text-xl pb-10 font-semibold"
+        className="text-white text- pb-10 font-semibold"
       >
-        A Canvas Labs Innovation
+        Made with Canvas Labs
       </a>
     </footer>
   );
