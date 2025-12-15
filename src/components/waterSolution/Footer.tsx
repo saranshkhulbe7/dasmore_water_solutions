@@ -71,7 +71,7 @@ const Footer = () => {
     );
 
   return (
-    <footer className="border-t border-gray-700 bg-black">
+    <footer className="border-t border-gray-700 bg-black flex flex-col items-center justify-center">
       <div className="max-w-7xl mx-auto px-8 lg:px-10 py-10">
         {/* mobile socials and logo */}
         <div className="lg:hidden flex flex-col items-start space-y-6 pb-10">
@@ -175,6 +175,13 @@ const Footer = () => {
           ))}
         </div>
       </div>
+      <a
+        href="https://www.canvaslabs.world/"
+        target="_blank"
+        className="text-white text-xl pb-10 font-semibold"
+      >
+        A Canvas Labs Innovation
+      </a>
     </footer>
   );
 };
